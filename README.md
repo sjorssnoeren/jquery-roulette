@@ -1,9 +1,9 @@
 # jQuery roulette
 
 ### About the plugin
-jRoulette makes it possible for you to present in a great way using css classes. We recommend you to use a css library like animate.css from Daniel Eden to get the best results.
+jRoulette makes it possible for you to present stuff in a great (rouleting) way using css classes. We recommend you to use a css library like animate.css from Daniel Eden to get the best results.
 
-Let's say you have an Instagram account and a website to show these photos on. You want to showcase 5 photos because the container doesn't allow you to show more of your great pictures. jRoulette makes it possible for you to rotate these items so you can show more than the 5 pictures that you got room for.
+Let's say you have an Instagram account and a website to show these Instagram photos on. You can only to showcase 5 photos because the container doesn't allow you to show more of your great pictures. jRoulette makes it possible for you to rotate these items so you can show more than the 5 pictures that you got room for.
 
 A demo can be found over here: [https://sjorssnoeren.github.io/jquery-roulette](https://sjorssnoeren.github.io/jquery-roulette) 
 
