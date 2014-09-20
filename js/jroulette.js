@@ -16,8 +16,9 @@
       duration: 3000,
       itemSelector: '.item',
       maxItems: 6,
-      transitionInClass: 'animated zoomInDown',
-      transitionOutClass: 'animated flipOutX',
+      transitionInClass: 'animated fadeIn',
+      transitionOutClass: 'animated fadeOut',
+      transitionInDuration: 1100,
       transitionOutDuration: 1100
     };  
     
@@ -31,6 +32,18 @@
      */
     plugin.init = function() {
       plugin.settings = $.extend({}, defaults, options);
+
+      var duration = plugin.settings.duration,
+          transitionInDuration = plugin.settings.transitionInDuration,
+          transitionOutDuration = plugin.settings.transitionOutDuration;
+
+      if (transitionInDuration > duration || transitionOutDuration > duration) {
+        jQuery.error('In & out transitions may not be shorter then shuffle duration \n' + 
+                     'In:' + transitionInDuration + '\n' +
+                     'Out:' + transitionOutDuration + '\n' +
+                     'Duration:' + duration);
+      }
+
       start();
     }
 
@@ -84,6 +97,7 @@
     var switchDomElements = function(insertIndex, replaceIndex) {
       var itemSelector = plugin.settings.itemSelector,
           transitionInClass = plugin.settings.transitionInClass,
+          transitionInDuration = plugin.settings.transitionInDuration;
           transitionOutClass = plugin.settings.transitionOutClass,
           transitionOutDuration = plugin.settings.transitionOutDuration;
 
@@ -98,13 +112,17 @@
 
       setTimeout(function() {
         insertObj.removeClass(transitionOutClass);
+
         insertObj.html(replace);
 
-        insertObj.removeClass(transitionInClass);
         insertObj.outerWidth();
         insertObj.addClass(transitionInClass);
 
-        replaceObj.html(insert);
+        setTimeout(function () {
+          insertObj.removeClass(transitionInClass);
+          replaceObj.html(insert);
+        }, transitionInDuration);
+
       }, transitionOutDuration);
     }
 
