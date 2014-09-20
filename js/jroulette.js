@@ -16,7 +16,9 @@
       duration: 3000,
       itemSelector: '.item',
       maxItems: 6,
-      transitionClass: 'animated zoomInDown'
+      transitionInClass: 'animated zoomInDown',
+      transitionOutClass: 'animated flipOutX',
+      transitionOutDuration: 1100
     };  
     
     plugin.settings = {};
@@ -81,22 +83,29 @@
      */
     var switchDomElements = function(insertIndex, replaceIndex) {
       var itemSelector = plugin.settings.itemSelector,
-          transitionClass = plugin.settings.transitionClass;
+          transitionInClass = plugin.settings.transitionInClass,
+          transitionOutClass = plugin.settings.transitionOutClass,
+          transitionOutDuration = plugin.settings.transitionOutDuration;
 
       var insert = $(itemSelector).eq(insertIndex).html(),
           replace = $(itemSelector).eq(replaceIndex).html();
 
-      var insertObj = $(itemSelector).eq(insertIndex);
-      insertObj.html(replace);
+      var insertObj = $(itemSelector).eq(insertIndex),
+          replaceObj = $(itemSelector).eq(replaceIndex);
 
-      // Remove transition class
-      insertObj.removeClass(transitionClass);
-      // Repaint element
-      insertObj[0].offsetWidth = insertObj[0].offsetWidth;
-      // Add transition class
-      insertObj.addClass(transitionClass);
+      insertObj.outerWidth();
+      insertObj.addClass(transitionOutClass);
 
-      $(itemSelector).eq(replaceIndex).html(insert);
+      setTimeout(function() {
+        insertObj.removeClass(transitionOutClass);
+        insertObj.html(replace);
+
+        insertObj.removeClass(transitionInClass);
+        insertObj.outerWidth();
+        insertObj.addClass(transitionInClass);
+
+        replaceObj.html(insert);
+      }, transitionOutDuration);
     }
 
     /**
