@@ -7,12 +7,16 @@
 
   $.jRoulette = function(element, options) {
 
+    /**
+     * Plugin properties and such
+     */
     var plugin = this;
 
     var defaults = {
       duration: 3000,
       itemSelector: '.item',
-      maxItems: 6
+      maxItems: 6,
+      transitionClass: 'animated zoomInDown'
     };  
     
     plugin.settings = {};
@@ -69,16 +73,38 @@
       switchDomElements(insertIndex, replaceIndex);
     }
 
+    /**
+     * Replace the contents of two DOM elements with each other
+     *
+     * @param int index of the first DOM element
+     * @param int index of the second DOM element
+     */
     var switchDomElements = function(insertIndex, replaceIndex) {
-      var itemSelector = plugin.settings.itemSelector;
+      var itemSelector = plugin.settings.itemSelector,
+          transitionClass = plugin.settings.transitionClass;
 
       var insert = $(itemSelector).eq(insertIndex).html(),
           replace = $(itemSelector).eq(replaceIndex).html();
 
-      $(itemSelector).eq(insertIndex).html(replace).hide().fadeIn();
+      var insertObj = $(itemSelector).eq(insertIndex);
+      insertObj.html(replace);
+
+      // Remove transition class
+      insertObj.removeClass(transitionClass);
+      // Repaint element
+      insertObj[0].offsetWidth = insertObj[0].offsetWidth;
+      // Add transition class
+      insertObj.addClass(transitionClass);
+
       $(itemSelector).eq(replaceIndex).html(insert);
     }
 
+    /**
+     * Helpers function for random integers
+     *
+     * @param int maximum random output
+     * @return int random integer
+     */
     var random = function(max) {
       return Math.floor(Math.random() * max);
     }
@@ -88,7 +114,7 @@
 
 
   /**
-   * Prevents multiple instances
+   * Prevents the creation multiple instances
    */
   $.fn.jRoulette = function(options) {
 
