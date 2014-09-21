@@ -28,7 +28,7 @@ The following options are currently supported by the plugin, note that the optio
 ```
 $('#jroulette').jRoulette({
   duration: 3000,
-  itemSelector: '.item',
+  itemClass: 'item',
   maxItems: 6,
   transitionInClass: 'animated fadeIn',
   transitionInDuration: 1000,
