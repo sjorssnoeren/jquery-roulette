@@ -30,6 +30,9 @@ $('#jroulette').jRoulette({
   duration: 3000,
   itemSelector: '.item',
   maxItems: 6,
-  transitionClass: 'animated zoomInDown'
+  transitionInClass: 'animated fadeIn',
+  transitionInDuration: 1000,
+  transitionOutClass: 'animated fadeOut',
+  transitionOutDuration: 1000
 });
 ```

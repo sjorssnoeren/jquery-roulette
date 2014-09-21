@@ -17,8 +17,8 @@
       itemSelector: '.item',
       maxItems: 6,
       transitionInClass: 'animated fadeIn',
-      transitionOutClass: 'animated fadeOut',
       transitionInDuration: 1100,
+      transitionOutClass: 'animated fadeOut',
       transitionOutDuration: 1100
     };  
     
