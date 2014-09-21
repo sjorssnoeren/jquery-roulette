@@ -14,7 +14,7 @@
 
     var defaults = {
       duration: 3000,
-      itemSelector: '.item',
+      itemClass: 'item',
       maxItems: 6,
       transitionInClass: 'animated fadeIn',
       transitionInDuration: 1100,
@@ -52,16 +52,16 @@
      * Sets only max amount items to visible
      */
     var start = function() {
-      var itemSelector = plugin.settings.itemSelector,
+      var itemClass = plugin.settings.itemClass,
           maxItems = plugin.settings.maxItems,
-          totalItems = $(itemSelector).size();
+          totalItems = $(itemClass).size();
 
       plugin.settings.maxItems = totalItems < maxItems ? totalItems : maxItems;
       plugin.settings.totalItems = totalItems;
 
-      $(itemSelector).hide();
+      $element.find('.' + itemClass).hide();
       for (var i = 0; i < maxItems; i++) {
-        $(itemSelector).eq(i).show();
+        $element.find('.' + itemClass).eq(i).show();
       }
 
       window.setInterval(function () {
@@ -95,17 +95,17 @@
      * @param int index of the second DOM element
      */
     var switchDomElements = function(insertIndex, replaceIndex) {
-      var itemSelector = plugin.settings.itemSelector,
+      var itemClass = plugin.settings.itemClass,
           transitionInClass = plugin.settings.transitionInClass,
           transitionInDuration = plugin.settings.transitionInDuration;
           transitionOutClass = plugin.settings.transitionOutClass,
           transitionOutDuration = plugin.settings.transitionOutDuration;
 
-      var insert = $(itemSelector).eq(insertIndex).html(),
-          replace = $(itemSelector).eq(replaceIndex).html();
+      var insert = $element.find('.' + itemClass).eq(insertIndex).html(),
+          replace = $element.find('.' + itemClass).eq(replaceIndex).html();
 
-      var insertObj = $(itemSelector).eq(insertIndex),
-          replaceObj = $(itemSelector).eq(replaceIndex);
+      var insertObj = $element.find('.' + itemClass).eq(insertIndex),
+          replaceObj = $element.find('.' + itemClass).eq(replaceIndex);
 
       insertObj.outerWidth();
       insertObj.addClass(transitionOutClass);
@@ -118,9 +118,10 @@
         insertObj.outerWidth();
         insertObj.addClass(transitionInClass);
 
+        replaceObj.html(insert);
+
         setTimeout(function () {
           insertObj.removeClass(transitionInClass);
-          replaceObj.html(insert);
         }, transitionInDuration);
 
       }, transitionOutDuration);
