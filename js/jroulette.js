@@ -101,8 +101,6 @@
           transitionOutClass = plugin.settings.transitionOutClass,
           transitionOutDuration = plugin.settings.transitionOutDuration;
 
-      console.log($(element).find('.' + itemClass));
-
       var insert = $(element).find('.' + itemClass).eq(insertIndex).html(),
           replace = $(element).find('.' + itemClass).eq(replaceIndex).html();
 
