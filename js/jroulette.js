@@ -24,8 +24,7 @@
     
     plugin.settings = {};
 
-    var $element = $(element),
-        element = element;
+    var element = element;
 
     /**
      * Initialize plugin
@@ -54,14 +53,14 @@
     var start = function() {
       var itemClass = plugin.settings.itemClass,
           maxItems = plugin.settings.maxItems,
-          totalItems = $(itemClass).size();
+          totalItems = $(element).find('.' + itemClass).size();
 
       plugin.settings.maxItems = totalItems < maxItems ? totalItems : maxItems;
       plugin.settings.totalItems = totalItems;
 
-      $element.find('.' + itemClass).hide();
+      $(element).find('.' + itemClass).hide();
       for (var i = 0; i < maxItems; i++) {
-        $element.find('.' + itemClass).eq(i).show();
+        $(element).find('.' + itemClass).eq(i).show();
       }
 
       window.setInterval(function () {
@@ -101,11 +100,13 @@
           transitionOutClass = plugin.settings.transitionOutClass,
           transitionOutDuration = plugin.settings.transitionOutDuration;
 
-      var insert = $element.find('.' + itemClass).eq(insertIndex).html(),
-          replace = $element.find('.' + itemClass).eq(replaceIndex).html();
+      console.log($(element).find('.' + itemClass));
 
-      var insertObj = $element.find('.' + itemClass).eq(insertIndex),
-          replaceObj = $element.find('.' + itemClass).eq(replaceIndex);
+      var insert = $(element).find('.' + itemClass).eq(insertIndex).html(),
+          replace = $(element).find('.' + itemClass).eq(replaceIndex).html();
+
+      var insertObj = $(element).find('.' + itemClass).eq(insertIndex),
+          replaceObj = $(element).find('.' + itemClass).eq(replaceIndex);
 
       insertObj.outerWidth();
       insertObj.addClass(transitionOutClass);
