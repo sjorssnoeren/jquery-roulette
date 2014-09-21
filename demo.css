@@ -6,7 +6,7 @@
 
 body {
   color: #fff;
-  background: #222;
+  background: #181818;
   font-family: '', 'Helvetica Neue', sans-serif;
 }
 
@@ -20,13 +20,14 @@ h3 {
 }
 
 #example img {
-  width: 33.33%;
+  width: 300px;
+  height: 200px;
   display: block;
   float: left;
 }
 
 #wrap {
-  width: 800px;
+  width: 900px;
   margin: 0 auto;
 }
 
