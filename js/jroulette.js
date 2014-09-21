@@ -2,6 +2,7 @@
  * jRoulette
  *
  * @author Sjors Snoeren
+ * @version 0.1
  */
 ;(function($) {
 

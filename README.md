@@ -1,4 +1,4 @@
-# jQuery roulette
+# jQuery roulette v0.1
 
 ### About the plugin
 jRoulette makes it possible for you to present stuff in a great (rouleting) way using css classes. We recommend you to use a css library like animate.css from Daniel Eden to get the best results.
